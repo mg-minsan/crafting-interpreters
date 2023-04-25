@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:lox/src/lox.dart';
+
 void main(List<String> args) {
   try {
     if (args.length > 1) {
@@ -14,26 +16,4 @@ void main(List<String> args) {
     print(e);
     exit(64);
   }
-}
-
-class Lox {
-  static void runFile(String path) => _run(File(path).readAsStringSync());
-
-  static void runPrompt() {
-    while (true) {
-      stdout.write('> ');
-      final line = stdin.readLineSync();
-      if (line == null) break;
-      _run(line);
-    }
-  }
-
-  static _run(String source) {}
-
-  static void error(int line, String message) {
-    _report(line, '', message);
-  }
-
-  static void _report(int line, String where, String message) =>
-      print('[line $line + ] Error  $where : $message');
 }
